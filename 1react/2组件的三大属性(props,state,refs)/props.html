@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app1"></div>
+    <div id="app2"></div>
+    <div id="app3"></div>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- <script type="text/javascript" src="./js/babel-core.js"></script> -->
+    <script src="../js/prop-types.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+
+    <script type="text/babel">
+
+        var useInfo = { name: '小狗', age: '18', addr: '火星' }; function Tools(p){ return (
+
+        <ul>
+            <li>{p.name}</li>
+            <li>{p.age}</li>
+            <li>{p.addr}</li>
+        </ul>
+
+        ) } ; Tools.defaultProps = { age: 19, addr: '地球' }; Tools.propTypes = { name: PropTypes.string.isRequired }; ReactDOM.render(
+        <Tools name={useInfo.name} age={useInfo.age} addr={useInfo.addr}/>,document.getElementById('app1')) ; ReactDOM.render(
+        <Tools name={useInfo.name} />,document.getElementById('app2')); ReactDOM.render(
+        <Tools {...useInfo} />,document.getElementById('app3'));
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

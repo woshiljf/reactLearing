@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div id="app1"></div>
+    <script type="text/javascript" src="../js/react.development.js"></script>
+    <script type="text/javascript" src="../js/react-dom.development.js"></script>
+    <!-- <script type="text/javascript" src="./js/babel-core.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Mycomponet1 extends React.Component { constructor(props) { super(props); this.state = { isLike: false } } handle(){ const isLike = !this.state.isLike ;this.setState({ isLike }) } render() { const {isLike} = this.state; return (
+
+        <h1 onClick={ this.handle.bind(this) }> {isLike ? '我喜欢你' : '我不喜欢你'} </h1>
+
+        ) } } ;ReactDOM.render(
+
+        <Mycomponet1/>,document.getElementById('app1'))
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
