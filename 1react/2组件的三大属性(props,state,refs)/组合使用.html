@@ -2,66 +2,91 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
 
 <body>
 
-    <div id="app"></div>
+  <div id="app"></div>
 
-    <script type="text/javascript" src="../js/react.development.js"></script>
-    <script type="text/javascript" src="../js/react-dom.development.js"></script>
-    <!-- <script type="text/javascript" src="./js/babel-core.js"></script> -->
-    <script src="../js/prop-types.js"></script>
-    <script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
+  <script type="text/javascript" src="../js/react.development.js"></script>
+  <script type="text/javascript" src="../js/react-dom.development.js"></script>
+  <!-- <script type="text/javascript" src="./js/babel-core.js"></script> -->
+  <script src="../js/prop-types.js"></script>
+  <script src="https://cdn.bootcdn.net/ajax/libs/babel-standalone/7.0.0-beta.3/babel.min.js"></script>
 
-    <script type="text/babel">
+  <script type="text/babel">
 
 
-        class App1 extends React.Component{ constructor(props) { super(props); this.state = { data: ['吃饭','睡觉','玩游戏','写代码','唱歌'] }; this.addData = this.addData.bind(this) } addData(todo){ const {data} = this.state ; data.unshift(todo); this.setState({ data })
-        } render(){ return (
+    class App1 extends React.Component {
+      constructor(props) {
 
-        <div>
+        super(props);
+        this.state = { data: ['吃饭', '睡觉', '玩游戏', '写代码', '唱歌'] };
+
+        this.addData = this.addData.bind(this)
+      }
+      addData(todo) {
+        const { data } = this.state; data.unshift(todo); this.setState({ data })
+      }
+      render() {
+        return (
+
+          <div>
             <h3>做点什么事情呢</h3>
-            <Add addData={this.addData}/>
-            <List data={this.state.data}/>
+            <Add addData={this.addData} />
+            <List data={this.state.data} />
 
-        </div>
-
-
-        ) } }; class Add extends React.Component{ constructor(props) { super(props); this.addHandle = this.addHandle.bind(this) } addHandle(){ const {addData} = this.props ; var value = this.inputAdd.value ; if(!value) return value = value.trim(); addData(value);
-        this.inputAdd.value = '' } render(){ return (
-
-        <div>
-
-            <input ref={ input=> this.inputAdd = input} type="text"/>
-
-            <button onClick={ this.addHandle}>添加数据</button>
-
-        </div>
+          </div>
 
 
-        ) } } class List extends React.Component{ constructor(props) { super(props); } render(){ const {data} = this.props ; return (
+        )
+      }
+    }; class Add extends React.Component {
+      constructor(props) { super(props); this.addHandle = this.addHandle.bind(this) } addHandle() {
+        const { addData } = this.props; var value = this.inputAdd.value; if (!value) return value = value.trim(); addData(value);
+        this.inputAdd.value = ''
+      } render() {
+        return (
 
-        <ul>
+          <div>
 
-            { data.map((item,index)=>{ return (
+            <input ref={input => this.inputAdd = input} type="text" />
 
-            <li key={index}>{item}</li>
+            <button onClick={this.addHandle}>添加数据</button>
 
-            ) }) }
-
-        </ul>
+          </div>
 
 
+        )
+      }
+    } class List extends React.Component {
+      constructor(props) { super(props); } render() {
+        const { data } = this.props; return (
 
-        ) } } ReactDOM.render(
-        <App1/>,document.getElementById('app'))
+          <ul>
 
-    </script>
+            { data.map((item, index) => {
+              return (
+
+                <li key={index}>{item}</li>
+
+              )
+            })}
+
+          </ul>
+
+
+
+        )
+      }
+    } ReactDOM.render(
+      <App1 />, document.getElementById('app'))
+
+  </script>
 
 
 
