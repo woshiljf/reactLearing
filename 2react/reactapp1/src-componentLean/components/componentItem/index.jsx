@@ -1,19 +1,20 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import PubSub from 'pubsub-js'
+
 import './index.css'
 
 class ComponentItem extends Component {
 
   static propTypes = {
 
+    deleteComment: PropTypes.func.isRequired,
+
     index: PropTypes.number.isRequired
 
   }
-  deleHandle = () => {
-    const { index } = this.props
-    // 发布消息
-    PubSub.publish('deleteData', index)
+  deleHandle () {
+    const { index, deleteComment } = this.props
+    deleteComment(index)
   }
   render () {
     const { userInfo } = this.props
@@ -29,7 +30,7 @@ class ComponentItem extends Component {
             <span>{userInfo.content}</span>
           </div>
           <div>
-            <button onClick={this.deleHandle}>删除</button>
+            <button onClick={this.deleHandle.bind(this)}>删除</button>
           </div>
 
         </li>

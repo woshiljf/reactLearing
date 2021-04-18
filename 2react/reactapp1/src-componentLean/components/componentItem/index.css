@@ -1,0 +1,6 @@
+li{
+  list-style-type: none;
+  width: 100%;
+  height: auto;
+  border: 1px solid red;
+}

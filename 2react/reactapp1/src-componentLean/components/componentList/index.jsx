@@ -22,7 +22,7 @@ class ComponentList extends Component {
 
             commentList.map((item, index) => {
               return (
-                <ComponentItem userInfo={item} key={index} index={index}></ComponentItem>
+                <ComponentItem userInfo={item} key={index} index={index} deleteComment={this.props.deleteComment}></ComponentItem>
               )
             })
 
@@ -43,6 +43,7 @@ class ComponentList extends Component {
 ComponentList.propTypes = {
 
   commentList: PropTypes.array.isRequired,
+  deleteComment: PropTypes.func.isRequired
 };
 
 export default ComponentList;

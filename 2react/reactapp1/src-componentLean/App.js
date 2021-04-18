@@ -1,12 +1,12 @@
 import logo from './logo.svg';
 import React, { Component } from 'react'
-import PubSub from 'pubsub-js'
 // 引入组件
+
 import AddComponent from './components/addComponent/index.jsx'
 import ComponentList from './components/componentList/index.jsx'
-
 import './App.css';
 class App extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -20,17 +20,6 @@ class App extends Component {
 
       ]
     }
-  }
-
-  componentDidMount () {
-
-    // pubsub进行订阅
-    PubSub.subscribe('deleteData', (msg, index) => {
-
-      this.deleHandle(index)
-
-    })
-
   }
 
   // 使用箭头函数，解决this指向的问题
@@ -57,8 +46,6 @@ class App extends Component {
   }
 
 
-
-
   render () {
     const { commentList } = this.state
     return (
@@ -67,7 +54,7 @@ class App extends Component {
         <img src={logo} className="App-logo" alt="logo" />
         <h1>您好啊11，欢迎回来</h1>
         <AddComponent addHandle={this.addHandle}></AddComponent>
-        <ComponentList commentList={commentList}></ComponentList>
+        <ComponentList commentList={commentList} deleteComment={this.deleHandle}></ComponentList>
       </div>
 
     )
