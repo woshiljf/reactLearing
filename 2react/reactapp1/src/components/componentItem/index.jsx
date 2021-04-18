@@ -9,22 +9,12 @@ class ComponentItem extends Component {
     deleteComment: PropTypes.func.isRequired,
     index: PropTypes.number.isRequired
   }
-
   deleHandle () {
-
     const { index, deleteComment } = this.props
-
     deleteComment(index)
-
-
   }
-
-
-
   render () {
-
     const { userInfo } = this.props
-
     return (
       <div>
         <li>

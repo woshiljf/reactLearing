@@ -9,21 +9,24 @@ class AddComponent extends Component {
     addHandle: PropTypes.func.isRequired
   }
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: '',
-      content: ''
-    }
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     name: '',
+  //     content: ''
+  //   }
 
+  // }
+  state = {
+    name: '',
+    content: ''
   }
-
 
   nameHandle (event) {
 
     var name = event.target.value
 
-    if (name == '') return
+    if (name === '') return
 
     this.setState({
       name
@@ -32,7 +35,7 @@ class AddComponent extends Component {
   contentHandle (event) {
     var content = event.target.value
 
-    if (content == '') return
+    if (content === '') return
 
     this.setState({
       content

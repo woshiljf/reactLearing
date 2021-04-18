@@ -20,11 +20,10 @@ class App extends Component {
 
       ]
     }
-    this.addHandle = this.addHandle.bind(this)
-    this.deleHandle = this.deleHandle.bind(this)
   }
 
-  deleHandle (index) {
+  // 使用箭头函数，解决this指向的问题
+  deleHandle = (index) => {
 
     const { commentList } = this.state
 
@@ -35,7 +34,7 @@ class App extends Component {
   }
 
 
-  addHandle (content) {
+  addHandle = (content) => {
 
     const { commentList } = this.state
     commentList.unshift(content)
