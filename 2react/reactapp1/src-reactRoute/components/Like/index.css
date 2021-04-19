@@ -1,0 +1,10 @@
+.navBox li {
+
+  float: left;
+  width: 100px;
+  height: 50px;
+  border: 1px solid pink;
+  text-align: center;
+  line-height: 50px;
+  
+}
