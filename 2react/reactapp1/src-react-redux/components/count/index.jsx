@@ -9,8 +9,7 @@ class Count extends Component {
   static protypes = {
     count: Protypes.number.isRequired,
     increment: Protypes.func.isRequired,
-    decrement: Protypes.func.isRequired,
-    incrementAsync: Protypes.func.isRequired
+    decrement: Protypes.func.isRequired
   }
 
   constructor(props) {
@@ -33,13 +32,6 @@ class Count extends Component {
     this.props.decrement(number)
   }
 
-  incrementAsync = () => {
-
-    var number = this.select.value - 0
-
-    this.props.incrementAsync(number)
-  }
-
   render () {
     const { count } = this.props
     return (
@@ -58,9 +50,6 @@ class Count extends Component {
           <Button type="primary" size="small" className="incretement" onClick={this.incretement}>增加</Button>
 
           <Button type="primary" size="small" className="incretement" onClick={this.decretement}>减少</Button>
-
-          <Button type="primary" size="small" className="incretement" onClick={this.incrementAsync}>异步增加</Button>
-
 
         </div>
       </div>
