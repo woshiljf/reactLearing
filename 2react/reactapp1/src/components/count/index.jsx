@@ -1,18 +1,10 @@
 import React, { Component } from 'react'
 
-import { Button, Toast } from "antd-mobile";
+import { Button } from "antd-mobile";
 
 import Protypes from 'prop-types'
 
-import { connect } from "react-redux";
-// import { INCREMENT, DECREMENT } from "./redux/action-type";
-
-import { incrementCreator, decrementCreator } from "./redux/actions";
-
-import './App.css';
-
-class App extends Component {
-
+class Count extends Component {
   // 通过组件传值的方式
   static protypes = {
     count: Protypes.number.isRequired,
@@ -38,8 +30,6 @@ class App extends Component {
 
     var number = this.select.value - 0
     this.props.decrement(number)
-
-
   }
 
   render () {
@@ -69,15 +59,4 @@ class App extends Component {
 
 }
 
-// 这里比较敲门的地方就算，受用connent函数，建立组件之间与 store的连接
-export default connect(
-  state => ({ count: state }),
-
-  {
-    increment: incrementCreator,
-    decrement: decrementCreator
-  }
-
-
-
-)(App);
+export default Count

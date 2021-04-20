@@ -2,23 +2,13 @@ import React, { Component } from 'react'
 
 import { Button, Toast } from "antd-mobile";
 
-import Protypes from 'prop-types'
-
-import { connect } from "react-redux";
 // import { INCREMENT, DECREMENT } from "./redux/action-type";
 
-import { incrementCreator, decrementCreator } from "./redux/actions";
+import * as actions from "./redux/actions";
 
 import './App.css';
 
 class App extends Component {
-
-  // 通过组件传值的方式
-  static protypes = {
-    count: Protypes.number.isRequired,
-    increment: Protypes.func.isRequired,
-    decrement: Protypes.func.isRequired
-  }
 
   constructor(props) {
     super(props);
@@ -26,24 +16,38 @@ class App extends Component {
       count: 0
     }
   }
-
+  handleClick = () => {
+    Toast.fail('Load failed !!!', 1);
+  }
   incretement = () => {
 
     var number = this.select.value - 0
-    this.props.increment(number)
-
+    // const { count } = this.state
+    // this.setState({
+    //   count: count + number
+    // })
+    const { store } = this.props
+    store.dispatch(
+      actions.incrementCreator(number)
+    )
   }
 
   decretement = () => {
 
     var number = this.select.value - 0
-    this.props.decrement(number)
-
+    // const { count } = this.state
+    // this.setState({
+    //   count: count + number
+    // })
+    const { store } = this.props
+    store.dispatch(
+      actions.decrementCreator(number)
+    )
 
   }
 
   render () {
-    const { count } = this.props
+    const count = this.props.store.getState()
     return (
 
       <div className="App">
@@ -69,15 +73,4 @@ class App extends Component {
 
 }
 
-// 这里比较敲门的地方就算，受用connent函数，建立组件之间与 store的连接
-export default connect(
-  state => ({ count: state }),
-
-  {
-    increment: incrementCreator,
-    decrement: decrementCreator
-  }
-
-
-
-)(App);
+export default App;
