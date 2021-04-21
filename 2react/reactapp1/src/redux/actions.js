@@ -1,20 +1,27 @@
-import { DECREMENT, INCREMENT } from "./action-type";
+import { ADDCOMMENT, DELETECOMMENT, RECVECOMMENTS } from "./action-types";
 
-export const incrementCreator = (number) => ({ type: INCREMENT, data: number })
-export const decrementCreator = (number) => ({ type: DECREMENT, data: number })
+// 定义同步修改同步state状态
+export const addcomment = (comment) => ({ type: ADDCOMMENT, data: comment })
+export const deletecomment = (index) => ({ type: DELETECOMMENT, data: index })
 
-// redux里的异步操作,返回的不是一个对象，而是一个函数
+const reciveComment = (comments) => ({ type: RECVECOMMENTS, data: comments })
 
-export const incrementAsync = (number) => {
+// 异步状态
+
+export const getcommentAsync = () => {
 
   return (dispatch) => {
 
     setTimeout(() => {
-      dispatch(incrementCreator(number))
-    }, 1000);
 
+      const comments = [
+        { "name": '小狗', content: '今天的天气真好，你说对不对' },
+        { "name": '小猪', content: '今天的天气真好，你说对不对' }
+      ]
 
+      dispatch(reciveComment(comments))
+
+    }, 1000)
   }
-
-
 }
+

@@ -1,83 +1,84 @@
+import logo from './logo.svg';
 import React, { Component } from 'react'
-
-import { Button, Toast } from "antd-mobile";
-
-import Protypes from 'prop-types'
-
-import { connect } from "react-redux";
-// import { INCREMENT, DECREMENT } from "./redux/action-type";
-
-import { incrementCreator, decrementCreator } from "./redux/actions";
+import PubSub from 'pubsub-js'
+// 引入组件
+import AddComponent from './components/addComponent/index.jsx'
+import ComponentList from './components/componentList/index.jsx'
 
 import './App.css';
-
 class App extends Component {
-
-  // 通过组件传值的方式
-  static protypes = {
-    count: Protypes.number.isRequired,
-    increment: Protypes.func.isRequired,
-    decrement: Protypes.func.isRequired
-  }
-
   constructor(props) {
     super(props);
     this.state = {
-      count: 0
+      commentList: [
+
+        { "name": '小狗', content: '今天的天气真好，你说对不对' },
+        { "name": '小猪', content: '今天的天气真好，你说对不对' },
+        { "name": '小鸡', content: '今天的天气真好，你说对不对' },
+        { "name": '小牛', content: '今天的天气真好，你说对不对' },
+        { "name": '小兔', content: '今天的天气真好，你说对不对' },
+
+      ]
     }
   }
 
-  incretement = () => {
+  componentDidMount () {
 
-    var number = this.select.value - 0
-    this.props.increment(number)
+    // pubsub进行订阅
+    PubSub.subscribe('deleteData', (msg, index) => {
+
+      this.deleHandle(index)
+
+    })
+
+  }
+
+  // 使用箭头函数，解决this指向的问题
+  deleHandle = (index) => {
+
+    const { commentList } = this.state
+
+    commentList.splice(index, 1)
+    this.setState({
+      commentList
+    })
+  }
+
+
+  addHandle = (content) => {
+
+    const { commentList } = this.state
+    commentList.unshift(content)
+
+    this.setState({
+      commentList
+    })
 
   }
 
-  decretement = () => {
-
-    var number = this.select.value - 0
-    this.props.decrement(number)
 
 
-  }
 
   render () {
-    const { count } = this.props
+    const { commentList } = this.state
     return (
 
       <div className="App">
-
-        <h1>{count}</h1>
-        <div className="button">
-
-          <select ref={(select) => this.select = select}>
-            <option value="1">1</option>
-            <option value="3">3</option>
-            <option value="5">5</option>
-          </select>
-
-          <Button type="primary" size="small" className="incretement" onClick={this.incretement}>增加</Button>
-
-          <Button type="primary" size="small" className="incretement" onClick={this.decretement}>减少</Button>
-
-        </div>
+        <img src={logo} className="App-logo" alt="logo" />
+        <h1>您好啊11，欢迎回来</h1>
+        <AddComponent addHandle={this.addHandle}></AddComponent>
+        <ComponentList commentList={commentList}></ComponentList>
       </div>
+
     )
 
+
   }
+
 
 }
 
-// 这里比较敲门的地方就算，受用connent函数，建立组件之间与 store的连接
-export default connect(
-  state => ({ count: state }),
-
-  {
-    increment: incrementCreator,
-    decrement: decrementCreator
-  }
 
 
 
-)(App);
+export default App;

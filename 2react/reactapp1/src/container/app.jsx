@@ -1,22 +1,53 @@
-import React from 'react'
+import logo from '../logo.svg';
+import React, { Component } from 'react'
 
-import { connect } from "react-redux";
+// 引入组件
+import { connect } from 'react-redux'
+import AddComponent from '../components/addComponent/index.jsx'
+import ComponentList from '../components/componentList/index.jsx'
 
-import App from '../components/count/index'
-import './App.css'
-import { incrementCreator, decrementCreator, incrementAsync } from "../redux/actions";
+import { addcomment, getcommentAsync } from "../redux/actions";
 
+import Protypes from 'prop-types'
 
-// 这里比较敲门的地方就算，受用connent函数，建立组件之间与 store的连接
+import './App.css';
+class App extends Component {
+
+  static protypes = {
+    addcomment: Protypes.func.isRequired,
+    getcommentAsync: Protypes.func.isRequired
+  }
+
+  // 异步求值
+  componentDidMount () {
+    this.props.getcommentAsync()
+  }
+  render () {
+    const { addcomment } = this.props
+    return (
+
+      <div className="App">
+
+        <img src={logo} className="App-logo" alt="logo" />
+        <h1>您好啊11，欢迎回来</h1>
+
+        <AddComponent addcomment={addcomment} ></AddComponent>
+
+        <ComponentList></ComponentList>
+
+      </div>
+
+    )
+  }
+}
+
 export default connect(
-  state => ({ count: state }),
 
+  // 多个reducers时，使用state选择对应的reducer
+  state => ({ commentList: state.comments }),
   {
-    increment: incrementCreator,
-    decrement: decrementCreator,
-    incrementAsync: incrementAsync
+    addcomment, getcommentAsync
   }
 
 
-
-)(App);
+)(App)

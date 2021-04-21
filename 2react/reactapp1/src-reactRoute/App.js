@@ -2,17 +2,11 @@ import logo from './logo.svg';
 import React, { Component } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
 import './App.css';
-
-
 import About from './components/About'
 import Like from './components/Like'
 import Home from './components/Home'
 import MyNavLink from './components/NavLink'
 // const About = React.lazy(_ => import("./components/About/index.jsx"));
-
-
-
-
 class App extends Component {
   constructor(props) {
     super(props);
