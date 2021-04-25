@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './container/app.jsx';
-import store from './redux/store'
+import App from './App';
+import store from "./redux/store";
+// 使用react-redux插件来管理每个组件的store状态
+// react-redux提供了Provider组件
 import { Provider } from "react-redux";
 
 
@@ -14,5 +16,6 @@ ReactDOM.render(
   ,
   document.getElementById('root')
 );
+
 
 

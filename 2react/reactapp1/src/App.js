@@ -1,84 +1,75 @@
-import logo from './logo.svg';
 import React, { Component } from 'react'
-import PubSub from 'pubsub-js'
-// 引入组件
-import AddComponent from './components/addComponent/index.jsx'
-import ComponentList from './components/componentList/index.jsx'
+
+import { Button, Toast } from "antd-mobile";
+
+// import { INCREMENT, DECREMENT } from "./redux/action-type";
+
+import * as actions from "./redux/actions";
 
 import './App.css';
+
 class App extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      commentList: [
-
-        { "name": '小狗', content: '今天的天气真好，你说对不对' },
-        { "name": '小猪', content: '今天的天气真好，你说对不对' },
-        { "name": '小鸡', content: '今天的天气真好，你说对不对' },
-        { "name": '小牛', content: '今天的天气真好，你说对不对' },
-        { "name": '小兔', content: '今天的天气真好，你说对不对' },
-
-      ]
+      count: 0
     }
+  }
+  handleClick = () => {
+    Toast.fail('Load failed !!!', 1);
+  }
+  incretement = () => {
+
+    var number = this.select.value - 0
+    const { store } = this.props
+    // store.dispatch(
+    //   actions.incrementCreator(number)
+    // )
+    console.log(store);
   }
 
   componentDidMount () {
 
-    // pubsub进行订阅
-    PubSub.subscribe('deleteData', (msg, index) => {
+    console.log('da', this.props);
 
-      this.deleHandle(index)
-
-    })
 
   }
+  decretement = () => {
 
-  // 使用箭头函数，解决this指向的问题
-  deleHandle = (index) => {
-
-    const { commentList } = this.state
-
-    commentList.splice(index, 1)
-    this.setState({
-      commentList
-    })
-  }
-
-
-  addHandle = (content) => {
-
-    const { commentList } = this.state
-    commentList.unshift(content)
-
-    this.setState({
-      commentList
-    })
+    var number = this.select.value - 0
+    const { store } = this.props
+    store.dispatch(
+      actions.decrementCreator(number)
+    )
 
   }
-
-
-
 
   render () {
-    const { commentList } = this.state
+    const count = 1
     return (
 
       <div className="App">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>您好啊11，欢迎回来</h1>
-        <AddComponent addHandle={this.addHandle}></AddComponent>
-        <ComponentList commentList={commentList}></ComponentList>
+
+        <h1>{count}</h1>
+        <div className="button">
+
+          <select ref={(select) => this.select = select}>
+            <option value="1">1</option>
+            <option value="3">3</option>
+            <option value="5">5</option>
+          </select>
+
+          <Button type="primary" size="small" className="incretement" onClick={this.incretement}>增加</Button>
+
+          <Button type="primary" size="small" className="incretement" onClick={this.decretement}>减少</Button>
+
+        </div>
       </div>
-
     )
-
 
   }
 
-
 }
-
-
-
 
 export default App;

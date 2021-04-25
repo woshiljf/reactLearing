@@ -1,13 +1,14 @@
 const path = require('path');
 const CracoLessPlugin = require('craco-less');
 const theme = require('./theme')
-const { getThemeVariables } = require('antd/dist/theme')
+const resolve = dir => path.resolve(__dirname, dir);
+// const { getThemeVariables } = require('antd/dist/theme')
 module.exports = {
   webpack: {
     // 别名
     alias: {
-      "@": path.resolve("src"),
-      "@utils": path.resolve("src/utils"),
+      "@": resolve("src"),
+      "@utils": resolve("src/utils"),
     }
   },
   plugins: [

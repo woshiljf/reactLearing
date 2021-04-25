@@ -1,20 +1,5 @@
-import { ADDCOMMENT, DELETECOMMENT, RECVECOMMENTS } from "./action-types";
-import { combineReducers } from 'redux'
+import { INCREMENT, DECREMENT } from "./action-type";
 
-function comments (state = [], action) {
-
-  switch (action.type) {
-    case ADDCOMMENT:
-      return [action.data, ...state]
-    case DELETECOMMENT:
-      return state.filter((item, index) => index !== action.data)
-    case RECVECOMMENTS:
-      return action.data
-    default:
-      return state
-  }
-
-}
 
 export function counter (state = 0, action) {
 
@@ -22,10 +7,10 @@ export function counter (state = 0, action) {
 
   switch (action.type) {
 
-    case '1':
+    case INCREMENT:
       return state + action.data
 
-    case '2':
+    case DECREMENT:
 
       return state - action.data
 
@@ -35,10 +20,3 @@ export function counter (state = 0, action) {
   }
 
 }
-
-export default combineReducers({
-
-  comments,
-  counter
-
-})
