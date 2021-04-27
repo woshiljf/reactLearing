@@ -84,8 +84,6 @@ export default memo(function HYAppPlaybar () {
       setProgress((currentTime * 1000) / duration * 100);
     }
 
-    console.log(currentLyrics);
-
     let lrcLength = currentLyrics.length;
     let i = 0;
     for (; i < lrcLength; i++) {
@@ -188,7 +186,8 @@ export default memo(function HYAppPlaybar () {
         </Operator>
       </div>
       <audio ref={audioRef} onTimeUpdate={timeUpdate} onEnded={timeEnded} />
-      {showPanel && <HYAppPlayPanel />}
+      {/* 是否显示播放面板 */}
+      {showPanel && <HYAppPlayPanel setShowPanel={setShowPanel} />}
     </PlaybarWrapper>
   )
 })

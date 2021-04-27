@@ -10,7 +10,7 @@ import WyHeader from '@/components/header'
 
 import HYAppPlayBar from '@/pages/player/app-play-bar';
 
-import Protypes from 'prop-types'
+import { changePlayListAction } from "../player/store/actionCreators";
 
 class WyMain extends Component {
 
@@ -19,14 +19,12 @@ class WyMain extends Component {
 
     console.log(props);
   }
-  componentWillMount () {
-
-
-    console.log('大狗子', this.props);
-
+  componentDidMount () {
+    // 页面渲染完毕，加载PlayLists
+    const playList = JSON.parse(localStorage.getItem('playLists'))
+    this.props.changePlayListAction(playList)
     // 拦截判断是否离开当前页面
     window.addEventListener('beforeunload', this.beforeunload);
-
   }
   componentWillUnmount () {
     // 销毁拦截判断是否离开当前页面
@@ -34,9 +32,9 @@ class WyMain extends Component {
   }
   //页面离开、刷新、上一步、浏览器关闭之前会被拦截的方法。
   beforeunload = (e) => {
-    console.log('刷新');
+    // 页面刷新之前，把playLists存入到LocalStorage
+    localStorage.setItem('playLists', JSON.stringify(this.props.playList))
   }
-
 
   render () {
     return (
@@ -51,6 +49,14 @@ class WyMain extends Component {
   }
 }
 
+export default connect(
 
-
-export default WyMain
+  state => {
+    return {
+      playList: state.player.get('playList')
+    }
+  },
+  {
+    changePlayListAction
+  }
+)(WyMain)

@@ -35,6 +35,9 @@ export const PlayListWrapper = styled.div`
 
       .singer {
         width: 80px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
       }
 
       .duration {

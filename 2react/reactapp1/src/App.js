@@ -1,75 +1,78 @@
+import logo from './logo.svg';
 import React, { Component } from 'react'
-
-import { Button, Toast } from "antd-mobile";
-
-// import { INCREMENT, DECREMENT } from "./redux/action-type";
-
-import * as actions from "./redux/actions";
+import PubSub from 'pubsub-js'
+// 引入组件
+import AddComponent from './components/addComponent/index.jsx'
+import ComponentList from './components/componentList/index.jsx'
 
 import './App.css';
-
 class App extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      count: 0
-    }
-  }
-  handleClick = () => {
-    Toast.fail('Load failed !!!', 1);
-  }
-  incretement = () => {
+      commentList: [
 
-    var number = this.select.value - 0
-    const { store } = this.props
-    // store.dispatch(
-    //   actions.incrementCreator(number)
-    // )
-    console.log(store);
+        { "name": '小狗', content: '今天的天气真好，你说对不对' },
+        { "name": '小猪', content: '今天的天气真好，你说对不对' },
+        { "name": '小鸡', content: '今天的天气真好，你说对不对' },
+        { "name": '小牛', content: '今天的天气真好，你说对不对' },
+        { "name": '小兔', content: '今天的天气真好，你说对不对' },
+
+      ]
+    }
   }
 
   componentDidMount () {
 
-    console.log('da', this.props);
-
-
+    // pubsub进行订阅
+    // PubSub.subscribe('deleteData', (msg, index) => {
+    //   this.deleHandle(index)
+    // })
   }
-  decretement = () => {
 
-    var number = this.select.value - 0
-    const { store } = this.props
-    store.dispatch(
-      actions.decrementCreator(number)
-    )
+  // 使用箭头函数，解决this指向的问题
+  deleHandle = (index) => {
+
+    const { commentList } = this.state
+
+    commentList.splice(index, 1)
+    this.setState({
+      commentList
+    })
+  }
+
+
+  addHandle = (content) => {
+
+    const { commentList } = this.state
+    commentList.unshift(content)
+
+    this.setState({
+      commentList
+    })
 
   }
 
   render () {
-    const count = 1
+    const { commentList } = this.state
     return (
 
       <div className="App">
-
-        <h1>{count}</h1>
-        <div className="button">
-
-          <select ref={(select) => this.select = select}>
-            <option value="1">1</option>
-            <option value="3">3</option>
-            <option value="5">5</option>
-          </select>
-
-          <Button type="primary" size="small" className="incretement" onClick={this.incretement}>增加</Button>
-
-          <Button type="primary" size="small" className="incretement" onClick={this.decretement}>减少</Button>
-
-        </div>
+        <img src={logo} className="App-logo" alt="logo" />
+        <h1>您好啊11，欢迎回来</h1>
+        <AddComponent addHandle={this.addHandle}></AddComponent>
+        <ComponentList commentList={commentList}></ComponentList>
       </div>
+
     )
+
 
   }
 
+
 }
+
+
+
 
 export default App;

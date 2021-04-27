@@ -31,7 +31,7 @@ export const Control = styled.div`
     height: 28px;
     :hover {
         cursor: pointer;
-      }
+    }
   }
   .prev {
     background-position: 0 -130px;

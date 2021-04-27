@@ -20,12 +20,16 @@ export const HeaderLeft = styled.div`
 
   .operator {
     color: #ccc;
-
     button {
       background-color: transparent;
       color: #ccc;
+      :hover{
+        cursor: pointer;
+      }
     }
-
+    .clearPlayList{
+     
+    }
     .icon {
       display: inline-block;
       width: 16px;
@@ -43,6 +47,7 @@ export const HeaderLeft = styled.div`
       width: 13px;
       background-position: -51px 0;
     }
+
   }
 `
 
@@ -51,4 +56,22 @@ export const HeaderRight = styled.div`
   text-align: center;
   color: #fff;
   font-size: 14px;
+
+  .closePanel {
+    display: block;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 0;
+    color: #666;
+    right: 5px;
+    :hover{
+      cursor: pointer;
+      color: #fff;
+    }
+    
+  }
+
+
+
 `
