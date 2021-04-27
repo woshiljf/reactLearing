@@ -83,8 +83,8 @@ export const getSongDetailAction = (ids) => {
   return (dispatch, getState) => {
     // 1.判断是否歌曲存在playList中
     const playList = getState().player.get("playList");
-
-    const songIndex = playList.findIndex(song => song.id === ids);
+    let songIndex = -1
+    songIndex = playList.findIndex(song => song.id === ids);
     if (songIndex !== -1) {
       // 找到数据，播放列表里面有数据，改变当前的播放currentSong
       const currentSong = playList[songIndex];
@@ -92,11 +92,11 @@ export const getSongDetailAction = (ids) => {
       dispatch(changeCurrentSongAction(currentSong));
     } else {
       // 未找到数据，发起请求，获取歌曲播放信息
-
       getSongDetail(ids).then(res => {
         const song = res.songs && res.songs[0];
         if (!song) return;
         // 1.添加到playList中
+        console.log('发请求了吗');
         const newPlayList = [...playList];
         newPlayList.push(song);
         dispatch(changePlayListAction(newPlayList));

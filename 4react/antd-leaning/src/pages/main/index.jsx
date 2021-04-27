@@ -22,7 +22,9 @@ class WyMain extends Component {
   componentDidMount () {
     // 页面渲染完毕，加载PlayLists
     const playList = JSON.parse(localStorage.getItem('playLists'))
-    this.props.changePlayListAction(playList)
+    if (playList !== null) {
+      this.props.changePlayListAction(playList)
+    }
     // 拦截判断是否离开当前页面
     window.addEventListener('beforeunload', this.beforeunload);
   }

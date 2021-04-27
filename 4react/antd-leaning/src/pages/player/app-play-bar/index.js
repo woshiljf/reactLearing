@@ -92,7 +92,9 @@ export default memo(function HYAppPlaybar () {
         break
       }
     }
+
     const finalIndex = i - 1;
+    console.log(finalIndex);
     if (finalIndex !== currentLyricIndex) {
       dispatch(changeCurrentLyricIndexAction(finalIndex));
       message.open({
