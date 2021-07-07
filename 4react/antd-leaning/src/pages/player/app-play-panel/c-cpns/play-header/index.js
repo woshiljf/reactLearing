@@ -6,7 +6,7 @@ import {
   HeaderLeft,
   HeaderRight
 } from './style';
-
+import { song } from './constant'
 export default memo(function HYPlayHeader (props) {
   console.log(props);
   const dispatch = useDispatch()
@@ -14,10 +14,11 @@ export default memo(function HYPlayHeader (props) {
     playList: state.player.get("playList"),
     currentSong: state.player.get("currentSong")
   }), shallowEqual);
-
   // 清除播放列表
   const handleClear = function () {
-    dispatch(changePlayListAction([]))
+    // 清空播放列表
+    dispatch(changePlayListAction(song))
+
   }
   // 关掉面板
   const closePanel = function () {

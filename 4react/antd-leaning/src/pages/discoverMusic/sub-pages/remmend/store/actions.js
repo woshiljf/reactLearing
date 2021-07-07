@@ -87,6 +87,7 @@ export const getBanner = () => {
   return dispatch => {
     getTopBanner().then(res => {
 
+      console.log('轮播图', res);
       dispatch(changeBannerAction(res));
     })
   }

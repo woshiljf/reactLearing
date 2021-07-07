@@ -52,7 +52,7 @@ class App extends Component {
 
       <div className="App">
         <img src={logo} className="App-logo" alt="logo" />
-        <h1>您好啊11，欢迎回来</h1>
+        <h1>您好啊11111，欢迎回来</h1>
         <AddComponent addHandle={this.addHandle}></AddComponent>
         <ComponentList commentList={commentList} deleteComment={this.deleHandle}></ComponentList>
       </div>

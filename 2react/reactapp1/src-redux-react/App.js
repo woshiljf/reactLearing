@@ -69,15 +69,11 @@ class App extends Component {
 
 }
 
-// 这里比较敲门的地方就算，受用connent函数，建立组件之间与 store的连接
+// 这里比较巧妙的地方就算，受用connent函数，建立组件之间与 store的连接
 export default connect(
   state => ({ count: state }),
-
   {
     increment: incrementCreator,
     decrement: decrementCreator
   }
-
-
-
 )(App);

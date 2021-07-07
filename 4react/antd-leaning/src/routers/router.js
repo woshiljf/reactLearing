@@ -8,6 +8,8 @@ const DiscoverMusic = lazy(() => import('@/pages/discoverMusic'))
 const MyFriend = lazy(() => import('@/pages/myFriend'))
 const MyMusic = lazy(() => import('@/pages/myMusic'))
 const RecommendMusic = lazy(() => import('@/pages/discoverMusic/sub-pages/remmend'))
+const Songs = lazy(_ => import("@/pages/discoverMusic/sub-pages/songs"));
+const PlayList = lazy(_ => import('@/pages/discoverMusic/sub-pages/playList'))
 export default [
 
   {
@@ -33,6 +35,14 @@ export default [
         path: "/discover/recommend",
         component: RecommendMusic
       },
+      {
+        path: '/discover/songs',
+        component: Songs
+      },
+      {
+        path: '/discover/playList/:id',
+        component: PlayList
+      }
     ]
   },
 

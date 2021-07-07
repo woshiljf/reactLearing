@@ -15,9 +15,7 @@ import { changePlayListAction } from "../player/store/actionCreators";
 class WyMain extends Component {
 
   constructor(props) {
-    super(props);
-
-    console.log(props);
+    super(props)
   }
   componentDidMount () {
     // 页面渲染完毕，加载PlayLists
@@ -50,7 +48,7 @@ class WyMain extends Component {
     );
   }
 }
-
+// 使用react-redux ，Provider组件，将所有的state状态传递到各个组件，使用connect
 export default connect(
 
   state => {

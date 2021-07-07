@@ -5,6 +5,9 @@ import TopBanner from './sub-pages/top-banner/index.js'
 import WYHotRecommend from './sub-pages/hot-commend/index';
 import HYNewAlbum from './sub-pages/new-album';
 import HYRankingList from './sub-pages/ranking-list';
+import HYUserLogin from './sub-pages/user-login';
+import HYSettleSinger from './sub-pages/settle-singer';
+import HYHotRadio from './sub-pages/hot-radio';
 import {
   RecommendContainer,
   ContentCenter,
@@ -24,17 +27,14 @@ class RecommentMusic extends Component {
         <ContentCenter className="wrap-v2">
           {/* 左边区域 */}
           <RecommendLeft>
-
             <WYHotRecommend />
             <HYNewAlbum></HYNewAlbum>
-
             <HYRankingList></HYRankingList>
-
           </RecommendLeft>
-
           {/* 右边区域 */}
           <RecommendRight>
-
+            <HYSettleSinger />
+            <HYHotRadio />
           </RecommendRight>
 
 

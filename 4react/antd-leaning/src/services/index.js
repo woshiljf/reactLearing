@@ -5,7 +5,7 @@ export default function request (option) {
     // 1.创建axios的实例
     const instance = originAxios.create({
       baseURL: 'https://netease-cloud-music-api-gamma-three.vercel.app/',
-      timeout: 10000
+      timeout: 50000
     });
 
     // 配置请求和响应拦截

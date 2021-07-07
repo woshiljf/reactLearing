@@ -4,7 +4,7 @@ import PubSub from 'pubsub-js'
 // 引入组件
 import AddComponent from './components/addComponent/index.jsx'
 import ComponentList from './components/componentList/index.jsx'
-
+import { Button } from "antd-mobile";
 import './App.css';
 class App extends Component {
   constructor(props) {
@@ -58,10 +58,9 @@ class App extends Component {
     return (
 
       <div className="App">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>您好啊11，欢迎回来</h1>
-        <AddComponent addHandle={this.addHandle}></AddComponent>
-        <ComponentList commentList={commentList}></ComponentList>
+        <h1>您好啊111111，欢迎回来</h1>
+        {/* <Button type="primary">点我</Button> */}
+
       </div>
 
     )

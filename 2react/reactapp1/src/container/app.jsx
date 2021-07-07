@@ -1,6 +1,5 @@
 import logo from '../logo.svg';
 import React, { Component } from 'react'
-
 // 引入组件
 import { connect } from 'react-redux'
 import AddComponent from '../components/addComponent/index.jsx'
@@ -18,11 +17,13 @@ class App extends Component {
     getcommentAsync: Protypes.func.isRequired
   }
 
+
   // 异步求值
   componentDidMount () {
     this.props.getcommentAsync()
   }
   render () {
+    console.log(this.props);
     const { addcomment } = this.props
     return (
 
@@ -44,7 +45,11 @@ class App extends Component {
 export default connect(
 
   // 多个reducers时，使用state选择对应的reducer
-  state => ({ commentList: state.comments }),
+  state => ({
+    commentList: state.comments,
+
+    counts: state.counter
+  }),
   {
     addcomment, getcommentAsync
   }

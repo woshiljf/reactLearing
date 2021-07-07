@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 
 export const DiscoverMusicContainer = styled.div`
-
+    background-color: red !important;
  .top{
    height: 30px;
    background-color: #C20C0C;

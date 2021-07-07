@@ -16,7 +16,7 @@ function comments (state = [], action) {
 
 }
 
-export function counter (state = 0, action) {
+export function counter (state = 1111, action) {
 
   console.log(state, action);
 

@@ -16,9 +16,8 @@ export default memo(function DiscoverMusic (props) {
 
   const { route } = props
 
-
   return (
-    <DiscoverMusicContainer>
+    <DiscoverMusicContainer className="backColor">
       <div className="top">
         <TopMenu className="wrap-v1">
           {
@@ -38,14 +37,7 @@ export default memo(function DiscoverMusic (props) {
       </div>
     </DiscoverMusicContainer>
 
-
-
-
-
-
   )
-
-
 
 })
 

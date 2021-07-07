@@ -83,7 +83,6 @@ export default memo(function HYAppPlaybar () {
       setCurrentTime(currentTime);
       setProgress((currentTime * 1000) / duration * 100);
     }
-
     let lrcLength = currentLyrics.length;
     let i = 0;
     for (; i < lrcLength; i++) {
@@ -94,15 +93,27 @@ export default memo(function HYAppPlaybar () {
     }
 
     const finalIndex = i - 1;
-    console.log(finalIndex);
     if (finalIndex !== currentLyricIndex) {
       dispatch(changeCurrentLyricIndexAction(finalIndex));
-      message.open({
-        content: currentLyrics[finalIndex].content,
-        key: "lyric",
-        duration: 0,
-        className: 'lyric-message',
-      })
+      // 显示歌词
+      try {
+        message.open({
+          content: currentLyrics[finalIndex].content,
+          key: "lyric",
+          duration: 0,
+          className: 'lyric-message',
+        })
+      } catch (error) {
+        message.open({
+          content: "黑色幽默",
+          key: "lyric",
+          duration: 0,
+          className: 'lyric-message',
+        })
+
+      }
+
+
     }
   }
 
@@ -111,6 +122,7 @@ export default memo(function HYAppPlaybar () {
       audioRef.current.currentTime = 0;
       audioRef.current.play();
     } else {
+      // 播放结束，下一曲自动播放
       dispatch(changePlaySongAction(1));
     }
   }
@@ -138,9 +150,12 @@ export default memo(function HYAppPlaybar () {
       <div className="content wrap-v2">
         {/* 播放控制，左右切换，中间播放暂停 */}
         <Control isPlaying={isPlaying}>
+          {/* 上一曲 */}
           <button className="sprite_playbar btn prev"
             onClick={e => dispatch(changePlaySongAction(-1))}></button>
+          {/* 播放歌曲 */}
           <button className="sprite_playbar btn play" onClick={e => play()}></button>
+          {/* 下一曲 */}
           <button className="sprite_playbar btn next"
             onClick={e => dispatch(changePlaySongAction(1))}></button>
         </Control>

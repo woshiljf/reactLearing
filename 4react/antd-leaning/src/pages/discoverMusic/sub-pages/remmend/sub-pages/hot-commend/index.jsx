@@ -11,8 +11,6 @@ import {
   RecommendWrapper
 } from "./styled";
 
-
-
 const HotCommend = memo(() => {
   // 获取热门推荐state状态
   const state = useSelector(state => {
@@ -31,8 +29,11 @@ const HotCommend = memo(() => {
   }, [dispatch]);
 
   // 点击关键字进入搜索
+  // 进入歌单列表页面
   const keywordClick = useCallback((keyword) => {
+
     history.push({ pathname: "/discover/songs", cat: keyword });
+
   }, [history]);
 
 
@@ -45,11 +46,12 @@ const HotCommend = memo(() => {
         moreLink="/discover/songs"
         keywordClick={keywordClick} />
 
+      {/* 这里要给每个推荐图片加上导航了 */}
       <div className="recommend-list">
         {
           state.recommends.slice(0, 8).map((item, index) => {
             return (
-              <HYThemeCover info={item} key={item.id} />
+              <HYThemeCover info={item} key={item.id} link={`/discover/playList/${item.id}`} />
             )
           })
         }

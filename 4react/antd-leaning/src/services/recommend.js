@@ -49,3 +49,23 @@ export function getArtistList (limit, cat) {
     }
   })
 }
+// 获取歌单详情
+export function getPlayListDetail (id) {
+  return request({
+    url: "playlist/detail",
+    params: {
+      id
+    }
+  })
+}
+
+// /comment/playlist
+
+export function getPlayListComment (id) {
+  return request({
+    url: "comment/playlist",
+    params: {
+      id
+    }
+  })
+}

@@ -61,10 +61,9 @@ export const changePlaySongAction = (tag) => {
         break;
       default:
         currentSongIndex += tag;
-        if (currentSongIndex === playList.length) currentSongIndex = 0;
-        if (currentSongIndex === -1) currentSongIndex = playList.length - 1;
+        if (currentSongIndex >= playList.length) currentSongIndex = 0;
+        if (currentSongIndex < 0) currentSongIndex = playList.length - 1;
     }
-
     // 3.处理修改数据
     const currentSong = playList[currentSongIndex];
     dispatch(changeCurrentSongIndexAction(currentSongIndex));
@@ -95,10 +94,9 @@ export const getSongDetailAction = (ids) => {
       getSongDetail(ids).then(res => {
         const song = res.songs && res.songs[0];
         if (!song) return;
-        // 1.添加到playList中
-        console.log('发请求了吗');
         const newPlayList = [...playList];
         newPlayList.push(song);
+        // 改变当前的播放列表
         dispatch(changePlayListAction(newPlayList));
         // 2.改变当前index
         dispatch(changeCurrentSongIndexAction(newPlayList.length - 1));
@@ -108,9 +106,16 @@ export const getSongDetailAction = (ids) => {
 
     // 获取当前的歌词,并且解析
     getLyric(ids).then(res => {
-      const lrcString = res.lrc.lyric;
-      const lyrics = parseLyric(lrcString);
-      dispatch(changeLyricsAction(lyrics));
+
+      console.log('歌词', res);
+      try {
+        const lrcString = res.lrc.lyric;
+        const lyrics = parseLyric(lrcString);
+        dispatch(changeLyricsAction(lyrics));
+      } catch (error) {
+        dispatch(changeLyricsAction([]));
+      }
+
     });
   }
 }

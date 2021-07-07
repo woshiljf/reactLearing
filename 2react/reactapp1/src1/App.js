@@ -1,17 +1,18 @@
 import React, { Component } from 'react'
-
+import ReactDOM from 'react';
 import { Button, Toast } from "antd-mobile";
 
 // import { INCREMENT, DECREMENT } from "./redux/action-type";
 
 import * as actions from "./redux/actions";
-
+import Main from './components/main'
 import './App.css';
 
 class App extends Component {
 
   constructor(props) {
     super(props);
+    console.log('大海狗', props);
     this.state = {
       count: 0
     }
@@ -23,17 +24,19 @@ class App extends Component {
 
     var number = this.select.value - 0
     const { store } = this.props
-    // store.dispatch(
-    //   actions.incrementCreator(number)
-    // )
-    console.log(store);
+    // console.log(this.props);
+    store.dispatch(
+      actions.incrementCreator(number)
+    )
+    // console.log(store);
+    // console.log(store.getState());
+    this.setState({
+      count: store.getState()
+    })
   }
 
   componentDidMount () {
-
     console.log('da', this.props);
-
-
   }
   decretement = () => {
 
@@ -44,9 +47,14 @@ class App extends Component {
     // )
 
   }
+  unload = () => {
+    ReactDOM.unmountComponentAtNode(document.getElementById('root'))
+    // ReactDOM.unmountComponentAtNode()
+    // console.log(ReactDOM);
+  }
 
   render () {
-    const count = 1
+    const count = this.state.count
     return (
 
       <div className="App">
@@ -63,7 +71,8 @@ class App extends Component {
           <Button type="primary" size="small" className="incretement" onClick={this.incretement}>增加</Button>
 
           <Button type="primary" size="small" className="incretement" onClick={this.decretement}>减少</Button>
-
+          <Main></Main>
+          <button onClick={this.unload}>卸载</button>
         </div>
       </div>
     )

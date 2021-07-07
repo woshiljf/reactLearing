@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const PannelWrapper = styled.div`
+
   position: relative;
   flex: 1;
   margin: 21px 0 20px 0;
