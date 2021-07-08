@@ -50,6 +50,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/plugin-proposal-decorators": "^7.13.15"
+    "@babel/plugin-proposal-decorators": "^7.13.15",
+    "react-hot-loader": "^4.13.0"
   }
 }

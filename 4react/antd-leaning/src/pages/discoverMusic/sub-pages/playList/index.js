@@ -2,9 +2,9 @@ import React, { memo, useEffect } from 'react';
 
 import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 
-import PlayListHeader from './sub-pags/playList-header'
-import PlayListTable from './sub-pags/playList-table'
-import PlayListComment from './sub-pags/playList-comment'
+import PlayListHeader from './sub-pages/playList-header'
+import PlayListTable from './sub-pages/playList-table'
+import PlayListComment from './sub-pages/playList-comment'
 // 样式组件
 import {
   PlayListContainer,
